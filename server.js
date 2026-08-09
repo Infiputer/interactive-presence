@@ -232,7 +232,7 @@ function buildRealtimeSession(record) {
 }
 
 function originFor(req) {
-  return `${req.headers["x-forwarded-proto"] || "http"}://${req.headers.host || "localhost:8080"}`;
+  return `${req.headers["x-forwarded-proto"] || "http"}://${req.headers.host || "localhost:8383"}`;
 }
 
 function callStatusPayload(req, record) {
@@ -928,8 +928,8 @@ if (fs.existsSync(runtimePath)) {
   }
 }
 
-server.listen(8080, "127.0.0.1", () => {
-  console.log("Friendly Realtime Agent: http://localhost:8080");
+server.listen(8383, "0.0.0.0", () => {
+  console.log("Interactive Presence: http://0.0.0.0:8383");
 });
 
 setInterval(() => {
