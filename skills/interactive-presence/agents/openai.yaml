@@ -1,0 +1,4 @@
+interface:
+  display_name: "Interactive Presence"
+  short_description: "Move a coding session into a live call"
+  default_prompt: "Use $interactive-presence to create a contextual developer call and consume its results."

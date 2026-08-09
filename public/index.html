@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Interactive Presence — Call with Novo</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div class="meet-brand" aria-label="Interactive Presence"><span class="meet-camera"></span><strong>Interactive Presence</strong></div>
+        <div class="meeting-title"><h1>Call with Novo</h1><p>Bring your coding agent into the room</p></div>
+        <div class="status" id="status"><i></i><span>Ready</span></div>
+      </header>
+
+      <section class="meeting-stage">
+        <div class="video-tile">
+          <div class="agent-presentation" id="agentPresentation" hidden>
+            <img id="agentBrowserStream" alt="Novo's shared browser" />
+            <div class="presentation-label"><i></i><span id="agentBrowserStatus">Novo is presenting</span></div>
+          </div>
+          <div class="character" id="character" aria-label="Animated friendly agent">
+            <div class="avatar-canvas">
+              <img class="avatar-scene" src="/assets/nova-3d-room.png" alt="Novo, a friendly 3D avatar in a softly lit home office" />
+              <div class="facial-rig" aria-hidden="true">
+              <div class="brow left"></div><div class="brow right"></div>
+              <div class="eye left"><i></i></div><div class="eye right"><i></i></div>
+              <div class="cheek left"></div><div class="cheek right"></div>
+              <div class="mouth"><div></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="tile-name">Novo</div>
+          <aside class="screen-card" id="screenCard" hidden>
+            <video id="screenPreview" autoplay muted playsinline></video>
+            <div class="screen-meta">
+              <span><i></i> You are presenting</span>
+              <small id="screenSeen">Waiting for first look…</small>
+            </div>
+          </aside>
+        </div>
+        <aside class="captions-panel">
+          <div class="panel-tabs" role="tablist" aria-label="Meeting sidebar">
+            <button class="panel-tab active" id="captionsTab" type="button" role="tab" aria-selected="true" aria-controls="captionsView">Captions</button>
+            <button class="panel-tab" id="chatTab" type="button" role="tab" aria-selected="false" aria-controls="chatView">Chat <i id="chatUnread" hidden></i></button>
+          </div>
+          <section class="panel-view active" id="captionsView" role="tabpanel" aria-labelledby="captionsTab">
+            <div class="captions-header"><div><h2>Live captions</h2><p>Conversation transcript</p></div><span>CC</span></div>
+            <div class="conversation" id="transcript" aria-live="polite">
+              <div class="empty" id="empty">
+                <h2>Captions will appear here</h2>
+                <p>Join the call and start talking naturally.</p>
+              </div>
+            </div>
+          </section>
+          <section class="panel-view chat-view" id="chatView" role="tabpanel" aria-labelledby="chatTab" hidden>
+            <div class="chat-header"><h2>In-call messages</h2><p>Messages are visible to everyone in this meeting.</p></div>
+            <div class="chat-messages" id="chatMessages" aria-live="polite"><div class="chat-empty" id="chatEmpty">No messages yet</div></div>
+            <form class="chat-composer" id="chatForm"><textarea id="chatInput" rows="1" maxlength="4000" placeholder="Send a message" disabled></textarea><button id="chatSend" type="submit" disabled aria-label="Send message">➤</button></form>
+          </section>
+        </aside>
+      </section>
+
+      <footer class="call-bar">
+        <details class="debug-panel" id="debugPanel">
+          <summary>Diagnostics <span id="debugCount">0 events</span></summary>
+          <div class="debug-actions"><button id="clearDebug" type="button">Clear log</button></div>
+          <div class="debug-log" id="debugLog"></div>
+        </details>
+        <div class="meeting-code">Interactive Presence</div>
+        <div class="call-controls">
+          <button class="mute" id="mute" disabled aria-label="Mute microphone"><span class="mic" aria-hidden="true"></span><b>Mute</b></button>
+          <button class="share" id="share" disabled><span class="present-icon" aria-hidden="true">↑</span><b>Present now</b></button>
+          <button class="connect" id="connect"><span class="phone-icon" aria-hidden="true"></span><span id="buttonLabel">Join call</span></button>
+        </div>
+        <div class="bar-spacer"></div>
+        <p id="hint">Microphone and screen content are sent to OpenAI only while their controls are active.</p>
+      </footer>
+    </main>
+    <audio id="remoteAudio" autoplay></audio>
+    <script src="/app.js"></script>
+  </body>
+</html>

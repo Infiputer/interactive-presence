@@ -1,0 +1,29 @@
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.crt
+
+# Dependencies and package-manager state
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Private meeting data and local browser state
+logs/
+runtime/
+browser-agent/node_modules/
+browser-agent/.playwright/
+browser-agent/playwright-report/
+browser-agent/test-results/
+
+# Local tooling and OS files
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.tmp
+coverage/

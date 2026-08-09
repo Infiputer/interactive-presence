@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Interactive Presence brings your coding agent into a live developer call, then returns the summary, screenshots, and transcript." />
+    <title>Interactive Presence — Bring your coding agent into the room</title>
+    <link rel="stylesheet" href="/home.css" />
+  </head>
+  <body>
+    <header class="nav">
+      <a class="brand" href="/" aria-label="Interactive Presence home"><span class="brand-mark"><i></i></span><span>Interactive Presence</span></a>
+      <nav aria-label="Primary navigation">
+        <a href="#workflow">How it works</a>
+        <a href="#artifacts">Artifacts</a>
+        <a href="/skill">Agent skill</a>
+        <button class="nav-cta" id="navCall" type="button">Try a call</button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <div class="eyebrow"><span></span> Live context for coding agents</div>
+          <h1>Bring your coding agent <em>into the room.</em></h1>
+          <p class="lede">When chat stops being enough, move the work into a live call. Novo arrives with the full development context, sees what you share, works in a browser, and hands everything back to your agent.</p>
+          <div class="agent-invite">
+            <div class="agent-invite-head"><span>Send this to your coding agent</span><small>One paste. That’s it.</small></div>
+            <div class="agent-command">
+              <code id="agentCommand">Read http://localhost:8080/SKILL.md and follow the instructions to start an Interactive Presence call with me.</code>
+              <button id="copyAgentCommand" type="button" aria-label="Copy agent instructions"><span>Copy</span></button>
+            </div>
+            <p>Codex will preload the current work, create a room, and send you the join link.</p>
+          </div>
+          <div class="hero-actions">
+            <button class="primary" id="heroCall" type="button"><span>Start a quick call</span><b>↗</b></button>
+            <a class="secondary" href="#api">See the API flow</a>
+          </div>
+          <p class="cta-status" id="ctaStatus" role="status"></p>
+          <div class="proof-row">
+            <span><i>✓</i> Context preloaded</span>
+            <span><i>✓</i> Screens understood</span>
+            <span><i>✓</i> Agent-ready handoff</span>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-label="Interactive Presence call handoff preview">
+          <div class="glow"></div>
+          <div class="context-card floating-card">
+            <div class="card-head"><span class="agent-dot">C</span><div><strong>Codex</strong><small>Development session</small></div><time>now</time></div>
+            <p>Want to have a call?</p>
+            <div class="context-lines"><i></i><i></i><i></i></div>
+          </div>
+          <div class="call-window">
+            <div class="window-bar"><span class="mini-brand"><i></i> Interactive Presence</span><span class="live-pill"><i></i> Live</span></div>
+            <div class="video-preview">
+              <img src="/assets/nova-3d-room.png" alt="Novo in a softly lit office" />
+              <div class="speaker-label">Novo</div>
+              <div class="caption">“I’m looking at the mobile checkout issue now.”</div>
+            </div>
+            <div class="window-footer"><span>◉</span><span>▣</span><b>⌁</b><small>03:42</small></div>
+          </div>
+          <div class="result-card floating-card">
+            <div class="result-icon">↳</div><div><strong>Handoff ready</strong><small>Summary · 2 images · transcript</small></div><span>✓</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="workflow section" id="workflow">
+        <div class="section-intro"><span>01 · Workflow</span><h2>Chat when it’s fast.<br />Call when it’s clearer.</h2><p>Interactive Presence preserves continuity across both.</p></div>
+        <div class="steps">
+          <article><span>1</span><div><h3>Codex creates the room</h3><p>Your coding agent sends the task, errors, attempted fixes, files, and relevant conversation as Markdown context.</p></div></article>
+          <article><span>2</span><div><h3>You work live with Novo</h3><p>Talk naturally, share your screen, paste links in chat, or let Novo open and demonstrate work in its own browser.</p></div></article>
+          <article><span>3</span><div><h3>The work returns intact</h3><p>Luna summarizes the outcome while timestamped screenshots and the raw transcript remain available to Codex.</p></div></article>
+        </div>
+      </section>
+
+      <section class="artifacts section" id="artifacts">
+        <div class="section-intro"><span>02 · Durable context</span><h2>The call ends.<br />The context doesn’t.</h2></div>
+        <div class="artifact-grid">
+          <article class="artifact summary-artifact"><div class="artifact-top"><span>Summary.md</span><b>GPT-5.6 Luna</b></div><h3>A handoff written for the next action.</h3><p>Outcome, work performed, findings, decisions, unresolved issues, and concrete next steps—not generic meeting notes.</p><div class="summary-lines"><i></i><i></i><i></i><i></i></div></article>
+          <article class="artifact image-artifact"><div class="artifact-top"><span>Capture_01</span><b>23:18:04 UTC</b></div><div class="mini-screen"><div class="bug-box"></div><span>Rendering issue found</span></div><h3>Evidence with intent.</h3><p>Each JPEG has Novo’s reason, Nano’s visual caption, and an exact UTC timestamp.</p></article>
+          <article class="artifact transcript-artifact"><div class="artifact-top"><span>Transcript</span><b>Raw · UTC</b></div><div class="transcript-row"><time>23:18:01</time><span>You</span><p>The button disappears below 640px.</p></div><div class="transcript-row"><time>23:18:04</time><span>Novo</span><p>I captured it. Let’s inspect the media query.</p></div><h3>Exact words, exact order.</h3></article>
+        </div>
+      </section>
+
+      <section class="api section" id="api">
+        <div class="api-copy"><span>03 · Agent API</span><h2>One request moves the conversation.</h2><p>Codex creates a call with Markdown context, gives you the join link, then follows one status endpoint until the result is ready.</p><a href="/skill">Read the Interactive Presence skill →</a></div>
+        <div class="code-card">
+          <div class="code-head"><span><i></i><i></i><i></i></span><b>POST /api/calls</b></div>
+          <pre><code><span class="muted">{</span>
+  <span class="key">"title"</span>: <span class="value">"Checkout mobile bug"</span>,
+  <span class="key">"context"</span>: <span class="value">"## Goal\nReproduce..."</span>
+<span class="muted">}</span>
+
+<span class="comment">// → returns</span>
+<span class="muted">{</span>
+  <span class="key">"call_url"</span>: <span class="value">"/call/7f3..."</span>,
+  <span class="key">"api_url"</span>: <span class="value">"/call/7f3.../api"</span>
+<span class="muted">}</span></code></pre>
+        </div>
+      </section>
+
+      <section class="final-cta">
+        <div><span class="brand-mark"><i></i></span><h2>Your agent already knows the code.<br />Now it can join the conversation.</h2><button class="primary" id="footerCall" type="button"><span>Open a call with Novo</span><b>↗</b></button></div>
+      </section>
+    </main>
+
+    <footer><a class="brand" href="/"><span class="brand-mark"><i></i></span><span>Interactive Presence</span></a><p>Built for developers who think better out loud.</p><a href="/skill">SKILL.md</a></footer>
+    <script src="/home.js"></script>
+  </body>
+</html>
