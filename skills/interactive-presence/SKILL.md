@@ -9,7 +9,7 @@ Move an in-progress coding session into a contextual live call with Novo, then b
 
 ## Create a call
 
-1. Use `INTERACTIVE_PRESENCE_URL` as the server origin when configured; otherwise use `http://localhost:8383`.
+1. Use `INTERACTIVE_PRESENCE_URL` as the server origin when configured; otherwise use `http://localhost:8080`.
 2. Build concise Markdown context containing:
    - The current goal and requested outcome.
    - Relevant conversation decisions and user preferences.

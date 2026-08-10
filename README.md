@@ -28,10 +28,10 @@ cp .env.example .env
 npm start
 ```
 
-The server listens on `0.0.0.0:8383`:
+The server listens on `0.0.0.0:8080`:
 
-- Homepage: <http://localhost:8383>
-- Skill: <http://localhost:8383/SKILL.md>
+- Homepage: <http://localhost:8080>
+- Skill: <http://localhost:8080/SKILL.md>
 - Call route: `/call/<uuid>`
 
 Build the browser worker image before using Novo’s browser computer:
@@ -52,7 +52,7 @@ Codex can read `/SKILL.md`, then:
 Example:
 
 ```bash
-curl -X POST http://localhost:8383/api/calls \
+curl -X POST http://localhost:8080/api/calls \
   -H 'Content-Type: application/json' \
   -d '{
     "title": "Checkout bug review",
